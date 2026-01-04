@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             >
+
+    <Color x:Key="ColorFondo">#F3E8FF</Color>
+    <Color x:Key="ColorBotonFondo">#6A4C93</Color>
+    <Color x:Key="ColorBotonTexto">#6A4C93</Color>
+    <Color x:Key="ColorPreguntaFondo">#D9B6FF</Color>
+    <Color x:Key="ColorPreguntaTexto">#4B0082</Color>
+    <Color x:Key="ColorCartaBorde">#A084CA</Color>
+    <Color x:Key="ColorCartaFondo">White</Color>
+    <Color x:Key="ColorAcierto">#B2F2BB</Color>
+    <Color x:Key="ColorError">#FF9AA2</Color>
+    <Color x:Key="ColorAccion">#B2CEFE</Color>
+    <Color x:Key="ColorEspecial">#E2BBFF</Color>
+
+    <Style x:Key="CartaAnimal" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 20"/>
+        <Setter Property="StrokeThickness" Value="5"/>
+        <Setter Property="Stroke" Value="{StaticResource ColorCartaBorde}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorCartaFondo}"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Shadow">
+            <Shadow Brush="#55000000" Offset="6,6" Radius="14" Opacity="0.45"/>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BotonPrincipal" TargetType="Button">
+        <Setter Property="CornerRadius" Value="30"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="TextColor" Value="{StaticResource ColorBotonTexto}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorBotonFondo}"/>
+        <Setter Property="HeightRequest" Value="60"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+
+    <Style x:Key="BotonSecundario" TargetType="Button" BasedOn="{StaticResource BotonPrincipal}">
+        <Setter Property="TextColor" Value="#E6D6FF"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorBotonFondo}"/>
+    </Style>
+
+
+    <Style x:Key="EtiquetaTitulo" TargetType="Label">
+        <Setter Property="FontSize" Value="34"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextColor" Value="#555555"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="Margin" Value="0,10,0,20"/>
+    </Style>
+
+    <Style x:Key="EtiquetaPuntos" TargetType="Label">
+        <Setter Property="FontSize" Value="42"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextColor" Value="#E6B800"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+
+    <Style x:Key="BordePregunta" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 40"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorPreguntaFondo}"/>
+        <Setter Property="Stroke" Value="{StaticResource ColorEspecial}"/>
+        <Setter Property="StrokeThickness" Value="6"/>
+        <Setter Property="Padding" Value="25"/>
+    </Style>
+    
+    
+
+
+
+</ResourceDictionary>

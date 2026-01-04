@@ -1,0 +1,17 @@
+# Carpetas de compilación
+bin/
+obj/
+
+# Archivos de usuario / Visual Studio
+*.user
+*.suo
+*.vs/
+.vscode/
+
+# Archivos de paquetes / dependencias
+*.nupkg
+packages/
+
+# Archivos temporales
+*.tmp
+*.log

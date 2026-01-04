@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnimalMemory.MVVM.View.PaginaPrincipal"
+             BackgroundColor="{StaticResource ColorFondo}">
+
+
+
+
+    <Grid>
+
+        <Image Source="fondo_animales.png"
+               Aspect="AspectFill"
+               Opacity="0.08"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill" />
+
+       
+        <ScrollView>
+            <VerticalStackLayout
+                Spacing="25"
+                Padding="0,150,0,40"
+                HorizontalOptions="Center">
+
+                <Label Text="Animal Memory"
+                       FontSize="50"
+                       FontAttributes="Bold"
+                       TextColor="#9B59B6"
+                       HorizontalTextAlignment="Center"
+                       Shadow="0,2,0.05,#B0A5D3"
+                       FontFamily="Poppins" />
+
+                <Image Source="animal_logo.png"
+                       HeightRequest="230"
+                       WidthRequest="230"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"/>
+
+                <Button Text="¡JUGAR!"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        BackgroundColor="#B2CEFE"
+                        TextColor="#4B0082"
+                        CornerRadius="30"
+                        HeightRequest="60"
+                        WidthRequest="250"
+                        Margin="0,50,0,0"
+                        Clicked="btnJugar_Clicked"/>
+
+                <Button Text="CÓMO JUGAR"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        BackgroundColor="#E6D3FF"
+                        TextColor="#4B0082"
+                        CornerRadius="30"
+                        HeightRequest="55"
+                        WidthRequest="250"
+                        Clicked="btnComoJugar_Clicked"/>
+
+                <Button Text="AJUSTES"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        BackgroundColor="#D9BBFF"
+                        TextColor="#4B0082"
+                        CornerRadius="30"
+                        HeightRequest="60"
+                        WidthRequest="250"
+                        Clicked="btnAjustes_Clicked"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+
+
+</ContentPage>

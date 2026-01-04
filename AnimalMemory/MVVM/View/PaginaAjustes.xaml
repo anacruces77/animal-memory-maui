@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnimalMemory.MVVM.View.PaginaAjustes"
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="#FAF5FF">
+
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25"
+                             Padding="25"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+            <Label Text="Ajustes de Accesibilidad" 
+                   FontSize="35" 
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#7D3C98"
+                   Margin="0,0,0,80"
+                   FontFamily="Poppins"
+                   />
+
+
+            <Label Text="Tamaño del texto:" 
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#9B59B6"/>
+
+
+            <Border WidthRequest="620"
+                    BackgroundColor="#F3F0FF"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="20"
+                    HorizontalOptions="Center"
+                    Shadow="True"
+                    VerticalOptions="Center">   
+
+                <VerticalStackLayout>
+                    <Label Text="Vista previa del tamaño de texto"
+                           FontSize="{Binding TamanoPreviewPregunta}"
+                           FontAttributes="Bold"
+                           TextColor="#6A4C93"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           LineBreakMode="TailTruncation"/>
+                </VerticalStackLayout>
+            </Border>
+
+
+
+            <Slider x:Name="sliderTamano"
+                    Minimum="80"
+                    Maximum="130"
+                    Value="{Binding TamanoTextoPreview}"
+                    WidthRequest="500"
+                    HeightRequest="40"
+                    ThumbColor="#6A4C93"
+                    MinimumTrackColor="#A87CCF"
+                    MaximumTrackColor="#D9D3E8"/>
+
+
+            <Label Text="{Binding Source={x:Reference sliderTamano}, Path=Value, StringFormat='Tamaño: {0:F0}%'}"
+                   HorizontalOptions="Center"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#6A4C93"
+                   Margin="0,0,0,20"/>
+
+
+            <HorizontalStackLayout Spacing="15" 
+                                   VerticalOptions="Center"
+                                   Margin="0,30,0,40"
+                                   >
+                <Label Text="Modo alto contraste:" 
+                       FontSize="20" 
+                       FontAttributes="Bold"
+                       VerticalTextAlignment="Center"
+                       TextColor="#9B59B6"/>
+
+                <Switch IsToggled="{Binding ModoAltoContraste}" 
+                        Margin="20,0,0,0"/>
+            </HorizontalStackLayout>
+            
+
+            <Button Text="RESTABLECER AJUSTES"
+                    FontAttributes="Bold"
+                    FontSize="17"
+                    BackgroundColor="#E6DBFF"
+                    TextColor="#4B0082"
+                    CornerRadius="25"
+                    HeightRequest="49"
+                    WidthRequest="240"
+                    HorizontalOptions="Center"
+                    Margin="0,0,0,05"
+                    Clicked="Restablecer_Clicked"/>
+
+            
+            <Button Text="GUARDAR CAMBIOS"
+                    FontAttributes="Bold"
+                    FontSize="22"
+                    BackgroundColor="#B2CEFE"
+                    TextColor="#4B0082"
+                    CornerRadius="30"
+                    HeightRequest="60"
+                    WidthRequest="280"
+                    HorizontalOptions="Center"
+                    Shadow="True"
+                    Margin="0,5,0,0"
+                    Clicked="Guardar_Clicked"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

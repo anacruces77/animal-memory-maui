@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AnimalMemory.MVVM.ViewModel"
+             x:Class="AnimalMemory.MVVM.View.PaginaJuego"
+             Title="{Binding NivelTexto}"
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="{StaticResource ColorFondo}" >
+
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+        <ImageButton Grid.Row="0"
+                     Source="icono_ajustes.png"
+                     WidthRequest="40"
+                     HeightRequest="40"
+                     BackgroundColor="Transparent"
+                     HorizontalOptions="End"
+                     VerticalOptions="Start"
+                     Margin="0,6,45,0"
+                     Clicked="AbrirAjustes_Clicked"
+                     ZIndex="200" /> 
+
+        <Border Grid.Row="0" 
+                BackgroundColor="White" 
+                StrokeShape="RoundRectangle 25" 
+                Padding="15,5" 
+                HorizontalOptions="Center" 
+                Margin="0,0,0,10">
+
+            <HorizontalStackLayout Spacing="10" 
+                                   VerticalOptions="Center">
+                <Label Text="Puntos:" 
+                       Style="{StaticResource EtiquetaTitulo}" 
+                       FontSize="24" 
+                       Margin="0"
+                       VerticalTextAlignment="Center"/>
+
+                <Label Text="{Binding Puntuacion}" 
+                       Style="{StaticResource EtiquetaPuntos}" 
+                       FontSize="32"
+                       VerticalTextAlignment="Center"/>
+            </HorizontalStackLayout>
+
+
+        </Border>
+
+
+        <CollectionView Grid.Row="1"
+                x:Name="TableroCartas"
+                ItemsSource="{Binding Baraja}" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                >
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" 
+                         Span="{Binding Columnas}" 
+                         HorizontalItemSpacing="12" 
+                         VerticalItemSpacing="12" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Border Style="{StaticResource CartaAnimal}"
+                                HeightRequest="160"
+                                WidthRequest="120">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:JuegoViewModel}}, Path=GirarTarjetaCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
+
+                            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                
+                                <Image Source="{Binding ImagenActual}"
+                                       Aspect="AspectFit"
+                                       InputTransparent="True" />
+
+                              
+                                <Label Text="{Binding NombreIngles}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="#4B0082"
+                                       HorizontalTextAlignment="Center"
+                                       Margin="0,8,0,0"
+                                       IsVisible="{Binding EstaGirada}" />
+                                
+                            </VerticalStackLayout>
+                            
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid Grid.Row="0" Grid.RowSpan="3" 
+              IsVisible="{Binding MostrandoPregunta}" 
+              BackgroundColor="{Binding ColorFondoPregunta}"
+              ZIndex="100">
+
+            <VerticalStackLayout Spacing="45" 
+                                 HorizontalOptions="Center" 
+                                 VerticalOptions="Center">
+
+                <Label Text="{Binding TextoPregunta}" 
+                       FontSize="{Binding TamanoTextoPregunta}"
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center" 
+                       TextColor="{Binding ColorTextoPregunta}"
+                       />
+
+                <Label Text="Arrastra el animal a la opción correcta"
+                       FontSize="{Binding TamanoTextoInstruccion}"  
+                       FontAttributes="Bold"
+                       TextColor="{Binding ColorTextoMensaje}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Margin="0,0,0,25"
+                       IsVisible="{Binding MostrandoPregunta}" />
+
+
+                    <Label Text="{Binding MensajePregunta}"
+                       FontSize="{Binding TamanoMensajePregunta}"
+                       FontAttributes="Bold"
+                       TextColor="{Binding ColorTextoMensaje}"
+                       HorizontalOptions="Center"
+                       VerticalTextAlignment="Center"
+                       IsVisible="{Binding MostrandoMensajePregunta}" />
+
+
+                <Border Style="{StaticResource CartaAnimal}" 
+                        WidthRequest="140" 
+                        HeightRequest="140" 
+                        Stroke="{StaticResource ColorAccion}"
+                        Margin="0,0,0,10">
+
+                    <Image Source="{Binding AnimalActualPregunta.Imagen}">
+                        <Image.GestureRecognizers>
+                            <DragGestureRecognizer CanDrag="True" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Border>
+
+                <!-- Destinos: izquierda y derecha -->
+                <HorizontalStackLayout Spacing="100" 
+                                       HorizontalOptions="Center"  
+                                       Margin="0,30,0,0">
+
+                    <!-- Opción izquierda -->
+                    <Border StrokeDashArray="10,5" 
+                            Stroke="{StaticResource ColorEspecial}" 
+                            StrokeThickness="4"
+                            BackgroundColor="White"
+                            HeightRequest="150" 
+                            WidthRequest="150" 
+                            StrokeShape="RoundRectangle 25"
+                            >
+
+                        <StackLayout VerticalOptions="Center" 
+                                     Spacing="15">
+                            
+                            <Image Source="{Binding ImagenOpcionIzquierda}" 
+                                   HeightRequest="80" 
+                                   Opacity="0.9" />
+                            
+                            <Label Text="{Binding TextoOpcionIzquierda}" 
+                                   HorizontalOptions="Center" 
+                                   TextColor="{StaticResource ColorEspecial}" 
+                                   FontAttributes="Bold"
+                                   FontSize="{Binding TamanoTextoOpciones}"/>
+                            
+                        </StackLayout>
+
+                        <Border.GestureRecognizers>
+                            <DropGestureRecognizer AllowDrop="True" Drop="OnDropIzquierda" />
+                        </Border.GestureRecognizers>
+
+                    </Border>
+
+                    <!-- Opción derecha -->
+                    <Border StrokeDashArray="10,5" 
+                            Stroke="{StaticResource ColorEspecial}" 
+                            StrokeThickness="4"
+                            BackgroundColor="White"
+                            HeightRequest="150" 
+                            WidthRequest="150" 
+                            StrokeShape="RoundRectangle 25"
+                           >
+
+                        <StackLayout VerticalOptions="Center" 
+                                     Spacing="15">
+                            
+                            <Image Source="{Binding ImagenOpcionDerecha}" 
+                                   HeightRequest="80" 
+                                   Opacity="0.9" />
+                            
+                            <Label Text="{Binding TextoOpcionDerecha}" 
+                                   HorizontalOptions="Center" 
+                                   TextColor="{StaticResource ColorEspecial}" 
+                                   FontAttributes="Bold"
+                                   FontSize="{Binding TamanoTextoOpciones}"/>
+                            
+                        </StackLayout>
+
+                        <Border.GestureRecognizers>
+                            <DropGestureRecognizer AllowDrop="True" 
+                                                   Drop="OnDropDerecha" />
+                        </Border.GestureRecognizers>
+
+                    </Border>
+
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+
+        </Grid>
+
+        <Button Grid.Row="2" 
+                Text="VOLVER" 
+                Style="{StaticResource BotonSecundario}" 
+                WidthRequest="220"
+                Margin="0,15,0,0"
+                Clicked="btnSalir_Clicked" />
+
+
+
+    </Grid>
+
+</ContentPage>
